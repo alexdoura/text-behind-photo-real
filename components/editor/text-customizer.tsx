@@ -24,18 +24,15 @@ interface TextCustomizerProps {
         fontWeight: number;
         opacity: number;
         rotation: number;
-        shadowColor: string;
-        shadowSize: number;
         tiltX: number;
         tiltY: number;
     };
     handleAttributeChange: (id: number, attribute: string, value: any) => void;
     removeTextSet: (id: number) => void;
     duplicateTextSet: (textSet: any) => void;
-    userId: string;
 }
 
-const TextCustomizer: React.FC<TextCustomizerProps> = ({ textSet, handleAttributeChange, removeTextSet, duplicateTextSet, userId }) => {
+const TextCustomizer: React.FC<TextCustomizerProps> = ({ textSet, handleAttributeChange, removeTextSet, duplicateTextSet }) => {
     const [activeControl, setActiveControl] = useState<string | null>(null);
 
     const controls = [
@@ -90,7 +87,6 @@ const TextCustomizer: React.FC<TextCustomizerProps> = ({ textSet, handleAttribut
                                 attribute="fontFamily"
                                 currentFont={textSet.fontFamily}
                                 handleAttributeChange={(attribute, value) => handleAttributeChange(textSet.id, attribute, value)}
-                                userId={userId}
                             />
                         )}
 
@@ -212,7 +208,6 @@ const TextCustomizer: React.FC<TextCustomizerProps> = ({ textSet, handleAttribut
                         attribute="fontFamily"
                         currentFont={textSet.fontFamily}
                         handleAttributeChange={(attribute, value) => handleAttributeChange(textSet.id, attribute, value)}
-                        userId={userId}
                     />
                     <div className='flex flex-row items-start justify-start gap-10 w-full'>
                         <ColorPicker

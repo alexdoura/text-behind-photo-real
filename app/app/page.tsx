@@ -22,6 +22,7 @@ const Page = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const previewContainerRef = useRef<HTMLDivElement>(null);
+    const userId = "default";
 
     const handleUploadImage = () => {
         if (fileInputRef.current) {
@@ -88,8 +89,8 @@ const Page = () => {
         return containerWidth / 1000;
     };
 
-    const getPreviewTextStyle = (textSet: any, scaleFactor: number) => ({
-        position: 'absolute',
+    const getPreviewTextStyle = (textSet: any, scaleFactor: number): React.CSSProperties => ({
+        position: 'absolute' as 'absolute', // TypeScript requires explicit narrowing
         top: `${50 - textSet.top}%`,
         left: `${textSet.left + 50}%`,
         transform: `
@@ -100,13 +101,14 @@ const Page = () => {
             rotateY(${textSet.tiltY}deg)
         `,
         color: textSet.color,
-        textAlign: 'center' as const,
+        textAlign: 'center' as 'center',
         fontSize: `${textSet.fontSize * scaleFactor}px`,
         fontWeight: textSet.fontWeight,
         fontFamily: textSet.fontFamily,
         opacity: textSet.opacity,
-        transformStyle: 'preserve-3d' as const
+        transformStyle: 'preserve-3d' as 'preserve-3d',
     });
+    
 
     const saveCompositeImage = () => {
         if (!canvasRef.current || !isImageSetupDone || !selectedImage) return;
