@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={GeistSans.className}>
+      <body className={inter.className}>
         <SupabaseProvider>
             <UserProvider>
               <ThemeProvider
